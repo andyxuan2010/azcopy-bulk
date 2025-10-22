@@ -118,10 +118,13 @@ if [[ "${MODE}" == "sync" ]]; then
   DELETE_DEST="${DELETE_DEST:-false}"   # true | false
   SYNC_FLAGS=( "--delete-destination=${DELETE_DEST}" )
   # For sync the order is the same: src then dest
-  CMD=( "${AZCOPY_PATH}" sync "${SRC_PATH}" "${DEST_URL}" "${FLAGS[@]}" "${SYNC_FLAGS[@]}" )
+  CMD=( "${AZCOPY_PATH}" sync "${SRC_PATH}" "${DEST_URL}" )
+  CMD+=( "${FLAGS[@]}" )
+  CMD+=( "${SYNC_FLAGS[@]}" )
 else
   # copy mode: azcopy copy <src> <dest>
-  CMD=( "${AZCOPY_PATH}" copy "${SRC_PATH}" "${DEST_URL}" "${FLAGS[@]}" )
+  CMD=( "${AZCOPY_PATH}" copy "${SRC_PATH}" "${DEST_URL}" )
+  CMD+=( "${FLAGS[@]}" )
 fi
 
 echo "Command:"

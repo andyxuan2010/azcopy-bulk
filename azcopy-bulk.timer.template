@@ -1,0 +1,10 @@
+[Unit]
+Description=Run AzCopy Bulk Sync every 5 minutes
+Requires=azcopy-bulk.service
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=5min
+
+[Install]
+WantedBy=timers.target
