@@ -56,3 +56,15 @@ If interrupted, use:
 azcopy jobs list
 azcopy jobs resume <JobId>
 ```
+
+## Pipeline and usage summary
+
+The repository's GitHub Actions workflow publishes its static documentation
+through GitHub Pages on pushes to `main`. It does not run data transfers in CI;
+AzCopy jobs are operator-initiated so storage credentials and SAS tokens remain
+outside the pipeline.
+
+For a transfer, install AzCopy, export `SRC_PATH` and `DEST_URL`, set `MODE` to
+`copy` or `sync`, and run `./azcopy-bulk.sh`. Use `DRY_RUN=true` first, then use
+`setup-cron.sh`, `setup-systemd.sh`, or `setup-scheduled-task.ps1` only after
+the command and destination have been verified.
